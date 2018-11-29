@@ -1,0 +1,30 @@
+body {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	background-color: rgba(0, 0, 0, 0.897);
+}
+
+#titulo {
+	margin-top: .8em;
+}
+
+#tamanho-tela {
+	width: 90vw;
+}
+
+@media only screen and (min-width: 1000px) {
+	#tamanho-tela {
+		width: 60vw;
+	}
+}
+
+.input-group {
+	margin-bottom: .5em;
+}
+
+#resumo {
+	margin-bottom: 3.2em;
+	color: white;
+}

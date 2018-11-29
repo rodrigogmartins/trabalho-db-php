@@ -1,0 +1,29 @@
+.input-group {
+    width: 100%;
+    margin: .7em 0;
+}
+
+#infoUsuario {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: space-between;
+    flex-flow: row wrap;
+    margin-bottom: 1em;
+}
+
+#infoUsuario > button {
+    margin-top: 1.5em;
+    color: rgb(0, 0, 0);
+    font-weight: bolder;
+}
+
+#infoUsuario > div > img {
+    border-radius: 50%;
+    margin-left: 5em;
+}
+
+input {
+    width: 300px;
+    height: 45px;
+}
