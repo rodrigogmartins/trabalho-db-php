@@ -20,6 +20,10 @@ body {
 	}
 }
 
+.btn {
+	font-weight: bold;
+}
+
 .input-group {
 	margin-bottom: .5em;
 }

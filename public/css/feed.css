@@ -15,6 +15,20 @@ select {
     border: none;
 }
 
+.tamanho-menu {
+    padding: 1em;
+}
+
+#informacoes > div > a {
+    color: white;
+    font-size: 2em;
+    transition-duration: .5s;
+}
+
+#informacoes > div > a:hover {
+    color: #ffb320;
+}
+
 #conteudo {
     background-color: rgba(255, 255, 255, 0.027);
 	max-height: 100vh;
@@ -22,14 +36,20 @@ select {
     border-radius: 5px;
 }
 
+.dropdown-menu {
+    padding: .5em .5em;
+}
+
 #titulo {
-    margin-top: .2em;
-    margin-bottom: .8em;
+    margin-top: .4em;
+    margin-bottom: .6em;
 }
 
 #feed {
 	max-height: 85vh;
-	overflow-y: scroll;
+    overflow-y: scroll;
+    margin-left: 0px;
+    margin-right: 0px;
 }
 
 #elementos-form-post {
@@ -37,6 +57,21 @@ select {
     width: 100%;
     display: flex;
     justify-content: space-around;
+    align-items: center;
+}
+
+#usuario-foto > a > img {
+    border-radius: 50%;
+    width: 2em;
+}
+
+#informacoes {
+    margin: 1em 1em;
+}
+
+#informacoes > div {
+    display: flex;
+    justify-content: center;
     align-items: center;
 }
 
@@ -64,3 +99,39 @@ select {
     margin-bottom: 1em;
     margin-top: .2em;
 }
+
+.comentarios {
+    display: block;
+    transition-delay: 3ms;
+}
+
+.comentarios > form {
+    margin-bottom: 1em;
+}
+
+.comentarios > form > input {
+    padding: 0 1em;
+}
+
+#container-comentarios {
+    display: flex;
+    flex-direction: column;
+}
+
+.comentario {
+    background-color: #b3b3b3;
+    margin: .5em 1em;
+    padding: 1em;
+    border-radius: 10px;
+    max-width: 80vw;
+    width: auto;
+}
+
+/* #resultado-busca {
+    background-color: white;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    z-index: 10;
+    position: absolute;
+    margin-top: -1.8vh;
+} */

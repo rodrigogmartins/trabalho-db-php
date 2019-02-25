@@ -1,6 +1,8 @@
 .input-group {
     width: 100%;
     margin: .7em 0;
+    display: flex;
+    justify-content: center;
 }
 
 #infoUsuario {
@@ -12,15 +14,25 @@
     margin-bottom: 1em;
 }
 
+#usuario-foto {
+    display: flex;
+    justify-content: center;
+}
+
+#usuario-foto > img {
+    border-radius: 50%;
+    width: 160px;
+}
+
 #infoUsuario > button {
     margin-top: 1.5em;
     color: rgb(0, 0, 0);
     font-weight: bolder;
 }
 
-#infoUsuario > div > img {
-    border-radius: 50%;
-    margin-left: 5em;
+#informacoes {
+    display: flex;
+    align-items: center;
 }
 
 input {

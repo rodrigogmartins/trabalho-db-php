@@ -1,3 +1,7 @@
+<?php
+    session_start();
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -6,7 +10,7 @@
         <title>Tuitcher</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-        <link rel="stylesheet" type="text/css" media="screen" href="css/style.css">
+        <link href="../css/style.css" rel="stylesheet" type="text/css">
     </head>
     <body class="container">
         <div class="row justify-content-center">
@@ -14,12 +18,40 @@
                 <div id="tamanho-tela"></div>
                 <div id="informacoes">
                     <h1 id="titulo" class="text-center">
-                        <img src="./img/logo.png" alt="">
+                        <img src="../img/logo.png" alt="">
                     </h1>
                     <p id="resumo" class="text-center">
                         Mas bah, Tchê te aprochega nessa rede social
                     </p>
                 </div>
+
+                <?php
+                    if(isset($_SESSION['naoAutenticado'])):
+                ?>
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <strong> ERRO AO EFETURAR LOGIN!</strong> Usuário ou senha inválidos.
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                <?php
+                    endif;
+                    unset($_SESSION['naoAutenticado']);
+                ?>
+
+                <?php
+                    if(isset($_SESSION['erroNoCadastro'])):
+                ?>
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <strong> ERRO AO EFETUAR CADASTRO!</strong> Verifique se os campos foram preenchidos corretamente e tente novamente.
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                <?php
+                    endif;
+                    unset($_SESSION['erroNoCadastro']);
+                ?>
 
                 <div id="botoes">
                     <button class="btn btn-lg btn-block btn-warning" data-toggle="modal" data-target="#modalLogin">
@@ -33,7 +65,7 @@
             </div>
         </div>
 
-        <div class="modal fade" id="modalLogin" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal fade modal-color" id="modalLogin" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -43,28 +75,28 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form action="#" id="login">
+                        <form action="login.php" method="POST" id="login">
                             <div class="input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"> Email </span>
                                 </div>
-                                <input type="email" id="email-login" aria-label="Email" class="form-control" required>
+                                <input type="email" name="email-login" id="email-login" aria-label="Email" class="form-control" required>
                             </div>
 
                             <div class="input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"> Senha </span>
                                 </div>
-                                <input type="password" id="senha-login" aria-label="Senha" class="form-control" required>
+                                <input type="password" name="senha-login" id="senha-login" aria-label="Senha" class="form-control" required>
+                            </div>
+                            </div>
+                            <div class="modal-footer">
+                                <div>
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal"> Sair </button>
+                                    <button type="submit" class="btn btn-warning" id="entrar"> Entrar </button>
+                                </div>
                             </div>
                         </form>
-                    </div>
-                    <div class="modal-footer">
-                        <div>
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal"> Sair </button>
-                            <button type="submit" class="btn btn-primary" id="entrar"> Entrar </button>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -80,7 +112,7 @@
                 </div>
                 <div class="modal-body">
                     <hr>
-                    <form action="#" id="cadastro">
+                    <form action="cadastro.php" method="POST" enctype="multipart/form-data" id="cadastro">
                         <div class="input-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text"> Nome </span>
@@ -105,14 +137,20 @@
                             </div>
                             <input type="password" name="confirmar-senha" id="confirmar-senha" aria-label="Confirmar Senha" class="form-control" required pattern="(\w|[!@#-_$%^\*()+=\|/]){6,20}">
                         </div>
-                        <div class="input-group">
-                            <input type="image" name="foto" id="foto" aria-label="Foto">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="inputGroupFileAddon01">Foto de Perfil</span>
+                            </div>
+                            <div class="custom-file">
+                                <input type="file" name="imagem" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" accept="image/*">
+                                <label class="custom-file-label" for="inputGroupFile01">Inserir Foto</label>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal"> Sair </button>
+                            <button type="submit" class="btn btn-warning" id="cadastrar"> Cadastrar </button>
                         </div>
                     </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal"> Sair </button>
-                    <button type="submit" class="btn btn-primary" id="cadastrar"> Cadastrar </button>
                 </div>
                 </div>
             </div>
